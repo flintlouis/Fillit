@@ -40,3 +40,25 @@ int		check_pieces(char **grid, char *tetriminos, int y, int x)
 	return (1);
 }
 
+void	place_pieces(char **grid, char *tetriminos, int y, int x)
+{
+	int i;
+	int ph;
+
+	i = 0;
+	ph = x;
+	while (tetriminos[i] != '\0')
+	{
+		if (tetriminos[i] >= 'A' && tetriminos[i] <= 'Z')
+		{
+			grid[y][x] = tetriminos[i];
+			x++;
+		}
+		else if (tetriminos[i] == '\n')
+		{
+			y++;
+			x = ph;
+		}
+		i++;
+	}
+}

@@ -52,14 +52,22 @@ char **create_list_of_tetriminos(int fd)
 	return (tetriminos);
 }
 
+void ft_printgrid(char **grid)
+{
+	while (*grid != NULL)
+		printf("%s", *grid++);
+	printf("\n");
+}
 
 int	main(int argc, char **argv)
 {
 	int			fd;
 	char		**tetriminos;
 	char  		**grid;
+	int 		x_y_grid;
 	int 		i;
 	int 		x;
+	int			y;
 
 	if (argc != 2)
 		return (0);
@@ -70,30 +78,26 @@ int	main(int argc, char **argv)
 	i = 0;
 	while(tetriminos[i])
 		printf("%s\n\n", tetriminos[i++]);
-	grid = ft_grid(1);
-	//printgrid
-	i = 0;
-	write(1, "\n\n\n", 3);
-	while (grid[i] != 0)
-	{
-		printf("%s", grid[i]);
-		i++;
-	}
-	//
+	grid = ft_grid(i);
+	x_y_grid = ft_fillitsqrt(i);
+
 	i = 0;
 	x = 0;
+	y = 0;
 	while (tetriminos[i])
 	{
-		if (check_pieces(grid, tetriminos[i], 0, x))
+		if (check_pieces(grid, tetriminos[i], y, x))
 		{
-			place_pieces(grid, tetriminos[i], 0, x);
+			place_pieces(grid, tetriminos[i], y, x);
+			ft_printgrid(grid);
 			i++;
 		}
 		else
-			x++;
+			if (++x > x_y_grid)
+			{
+				x = 0;
+				y++;
+			}
 	}
-	ft_putnbr(check_pieces(grid, tetriminos[1], 0, 0));
-	ft_putnbr(check_pieces(grid, tetriminos[2], 0, 0));
-	free(grid);
 	return (0);
 }
