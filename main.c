@@ -24,6 +24,8 @@ int	main(int argc, char **argv)
 	char	*tetriminos[27];
 	char	**grid;
 
+	if (argc != 2)
+		return (0);
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	while ((nbr = input_to_int(fd)) > 0 && i < 26)
