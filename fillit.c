@@ -66,25 +66,25 @@ char	*ft_tetrimino(int x)
 	char *result;
 
 	result = NULL;
-	result = x % 15 == 0 ? ft_strdup("####\n....\n....\n....") : result;
-	result = x % 23 == 0 ? ft_strdup("###.\n#...\n....\n....") : result;
-	result = x % 39 == 0 ? ft_strdup("###.\n.#..\n....\n....") : result;
-	result = x % 51 == 0 ? ft_strdup("##..\n##..\n....\n....") : result;
-	result = x % 54 == 0 ? ft_strdup(".##.\n##..\n....\n....") : result;
-	result = x % 71 == 0 ? ft_strdup("###.\n..#.\n....\n....") : result;
-	result = x % 99 == 0 ? ft_strdup("##..\n.##.\n....\n....") : result;
-	result = x % 113 == 0 ? ft_strdup("#...\n###.\n....\n....") : result;
-	result = x % 114 == 0 ? ft_strdup(".#..\n###.\n....\n....") : result;
-	result = x % 116 == 0 ? ft_strdup("..#.\n###.\n....\n....") : result;
-	result = x % 275 == 0 ? ft_strdup("##..\n#...\n#...\n....") : result;
-	result = x % 305 == 0 ? ft_strdup("#...\n##..\n#...\n....") : result;
-	result = x % 306 == 0 ? ft_strdup(".#..\n##..\n#...\n....") : result;
-	result = x % 547 == 0 ? ft_strdup("##..\n.#..\n.#..\n....") : result;
-	result = x % 561 == 0 ? ft_strdup("#...\n##..\n.#..\n....") : result;
-	result = x % 562 == 0 ? ft_strdup(".#..\n##..\n.#..\n....") : result;
-	result = x % 785 == 0 ? ft_strdup("#...\n#...\n##..\n....") : result;
-	result = x % 802 == 0 ? ft_strdup(".#..\n.#..\n##..\n....") : result;
-	result = x % 4369 == 0 ? ft_strdup("#...\n#...\n#...\n#...") : result;
+	result = x % 15 == 0 ? ft_strdup("####") : result;
+	result = x % 23 == 0 ? ft_strdup("###\n#") : result;
+	result = x % 39 == 0 ? ft_strdup("###\n #") : result;
+	result = x % 51 == 0 ? ft_strdup("##\n##") : result;
+	result = x % 54 == 0 ? ft_strdup(" ##\n##") : result;
+	result = x % 71 == 0 ? ft_strdup("###\n  #") : result;
+	result = x % 99 == 0 ? ft_strdup("##\n ##") : result;
+	result = x % 113 == 0 ? ft_strdup("#\n###") : result;
+	result = x % 114 == 0 ? ft_strdup(" #\n###") : result;
+	result = x % 116 == 0 ? ft_strdup("  #\n###") : result;
+	result = x % 275 == 0 ? ft_strdup("##\n#\n#") : result;
+	result = x % 305 == 0 ? ft_strdup("#\n##\n#") : result;
+	result = x % 306 == 0 ? ft_strdup(" #\n##\n#") : result;
+	result = x % 547 == 0 ? ft_strdup("##\n #\n #") : result;
+	result = x % 561 == 0 ? ft_strdup("#\n##\n #") : result;
+	result = x % 562 == 0 ? ft_strdup(" #\n##\n #") : result;
+	result = x % 785 == 0 ? ft_strdup("#\n#\n##") : result;
+	result = x % 802 == 0 ? ft_strdup(" #\n #\n##") : result;
+	result = x % 4369 == 0 ? ft_strdup("#\n#\n#\n#") : result;
 	return (result);
 }
 

@@ -20,7 +20,7 @@ int		ft_fillitsqrt(int nb)
 		if (x >= 46341)
 			return (0);
 		if (x * x > nb)
-			return (--x);
+			return (x);
 		x++;
 	}
 	return (x);
