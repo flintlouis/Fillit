@@ -11,30 +11,32 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 
-void	place_pieces(char **grid, char **tetriminos)
+int		check_pieces(char **grid, char *tetriminos, int y, int x)
 {
 	int i;
-	int j;
-	int x;
-	int y;
+	int ph;
 
+	ph = x;
 	i = 0;
-	j = 0;
-	x = 0;
-	y = 0;
-	while (tetriminos[i])
+	while (tetriminos[i] != '\0')
 	{
-		while (tetriminos[i][j] != '\n' && tetriminos[i][j] != '\0')
+		if (tetriminos[i] >= 'A' && tetriminos[i] <= 'Z')
 		{
-			grid[i][j] = tetriminos[i][j];
-			j++;
+			if (grid[y][x] != '.')
+				return (0);
+			x++;
 		}
-	}
-	i = 0;
-	while (grid[i] != 0)
-	{
-		printf("%s", grid[i]);
+		else if (tetriminos[i] == '\n')
+		{
+			y++;
+			x = ph;
+		}
+		if (grid[y] == NULL)
+			return (0);
 		i++;
 	}
+	return (1);
 }
+

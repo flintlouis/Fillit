@@ -57,7 +57,7 @@ char	**ft_grid(int size)
 		j = 0;
 		i++;
 	}
-	grid[i] = 0;
+	grid[i] = NULL;
 	return (grid);
 }
 

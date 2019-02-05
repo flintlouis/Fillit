@@ -17,6 +17,6 @@ char	**ft_grid(int size);
 char	*ft_tetrimino(int x);
 int		input_to_int(int fd);
 int		ft_fillitsqrt(int nb);
-void	place_pieces(char **grid, char **tetriminos);
+int		check_pieces(char **grid, char *tetriminos, int y, int x);
 
 #endif

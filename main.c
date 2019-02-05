@@ -15,6 +15,7 @@
 #include "fillit.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void tetrimino_to_ABC(char **tetriminos)
 {
@@ -58,6 +59,7 @@ int	main(int argc, char **argv)
 	char		**tetriminos;
 	char  		**grid;
 	int 		i;
+	int 		x;
 
 	if (argc != 2)
 		return (0);
@@ -66,10 +68,32 @@ int	main(int argc, char **argv)
 	tetrimino_to_ABC(tetriminos);
 
 	i = 0;
-	while(*tetriminos)
-		printf("%d\n%s\n\n", i++, *tetriminos++);
-	grid = ft_grid(i + 1);
-	place_pieces(grid, tetriminos);
+	while(tetriminos[i])
+		printf("%s\n\n", tetriminos[i++]);
+	grid = ft_grid(1);
+	//printgrid
+	i = 0;
+	write(1, "\n\n\n", 3);
+	while (grid[i] != 0)
+	{
+		printf("%s", grid[i]);
+		i++;
+	}
+	//
+	i = 0;
+	x = 0;
+	while (tetriminos[i])
+	{
+		if (check_pieces(grid, tetriminos[i], 0, x))
+		{
+			place_pieces(grid, tetriminos[i], 0, x);
+			i++;
+		}
+		else
+			x++;
+	}
+	ft_putnbr(check_pieces(grid, tetriminos[1], 0, 0));
+	ft_putnbr(check_pieces(grid, tetriminos[2], 0, 0));
 	free(grid);
 	return (0);
 }
