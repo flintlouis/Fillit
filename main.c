@@ -43,12 +43,7 @@ int	main(int argc, char **argv)
 	if (nbr == -1)
 		printf("INVALID FILE\n");
 	grid = ft_grid(i + 1);
-	i = 0;
-	while (grid[i] != 0)
-	{
-		printf("%s", grid[i]);
-		i++;
-	}
+	place_pieces(grid, tetriminos);
 	free(grid);
 	return (0);
 }

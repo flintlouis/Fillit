@@ -19,8 +19,8 @@
 
 char	**malloc_grid(int size_sqrt)
 {
-	int i;
-	char **grid;
+	int		i;
+	char	**grid;
 
 	i = 0;
 	grid = (char**)malloc(sizeof(char*) * (size_sqrt + 1));
@@ -43,7 +43,6 @@ char	**ft_grid(int size)
 	i = 0;
 	j = 0;
 	size_sqrt = ft_fillitsqrt(size * 4);
-
 	grid = malloc_grid(size_sqrt);
 	while (i < size_sqrt)
 	{
@@ -53,7 +52,7 @@ char	**ft_grid(int size)
 			j++;
 		}
 		grid[i][j] = '\n';
-		j++;		
+		j++;
 		grid[i][j] = '\0';
 		j = 0;
 		i++;
@@ -62,7 +61,7 @@ char	**ft_grid(int size)
 	return (grid);
 }
 
-char *ft_tetrimino(int x)
+char	*ft_tetrimino(int x)
 {
 	char *result;
 
@@ -91,7 +90,7 @@ char *ft_tetrimino(int x)
 
 int		input_to_int(int fd)
 {
-	char 	*line;
+	char	*line;
 	int		i;
 	int		j;
 	int		sum;
