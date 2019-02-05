@@ -25,7 +25,7 @@ void	place_pieces(char **grid, char **tetriminos)
 	y = 0;
 	while (tetriminos[i])
 	{
-		while (tetriminos[i][j] != '\n')
+		while (tetriminos[i][j] != '\n' && tetriminos[i][j] != '\0')
 		{
 			grid[i][j] = tetriminos[i][j];
 			j++;
