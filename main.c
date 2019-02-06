@@ -120,7 +120,6 @@ int	main(int argc, char **argv)
 				x = 0;
 				y = 0;
 				i = 0;
-				getchar();
 			}
 			//ft_printgrid(grid);
 			//x_y_grid += 1;
