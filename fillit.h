@@ -20,4 +20,6 @@ int		ft_fillitsqrt(int nb);
 int		check_pieces(char **grid, char *tetriminos, int y, int x);
 void	place_pieces(char **grid, char *tetriminos, int y, int x);
 
+int		rec_check_pieces(char **grid, char **tetriminos, int y, int x);
+
 #endif

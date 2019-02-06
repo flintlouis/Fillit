@@ -78,32 +78,38 @@ int	main(int argc, char **argv)
 	i = 0;
 	while(tetriminos[i])
 		printf("%s\n\n", tetriminos[i++]);
-	grid = ft_grid(i);
+	grid = ft_grid(1);
 	x_y_grid = ft_fillitsqrt(i * 4);
 
-	i = 0;
 	x = 0;
 	y = 0;
-	while (tetriminos[i])
+	while (grid[y])
 	{
-		if (check_pieces(grid, tetriminos[i], y, x))
-		{
-			place_pieces(grid, tetriminos[i], y, x);
-			ft_printgrid(grid);
-			x = 0;
-			y = 0;
-			i++;
-		}
-		else
-		{
-			x++;
-			if (x > x_y_grid)
-			{
-				printf("X_Y_GRID: %d X:%d\n", x_y_grid, x);
-				x = 0;
-				y++;
-			}
-		}
+		printf("%s", grid[y]);
+		y++;
 	}
+	y = 0;
+	ft_putnbr(rec_check_pieces(grid, tetriminos, y, x));
+	// while (tetriminos[i])
+	// {
+	// 	if (check_pieces(grid, tetriminos[i], y, x))
+	// 	{
+	// 		place_pieces(grid, tetriminos[i], y, x);
+	// 		ft_printgrid(grid);
+	// 		x = 0;
+	// 		y = 0;
+	// 		i++;
+	// 	}
+	// 	else
+	// 	{
+	// 		x++;
+	// 		if (x > x_y_grid)
+	// 		{
+	// 			printf("X_Y_GRID: %d X:%d\n", x_y_grid, x);
+	// 			x = 0;
+	// 			y++;
+	// 		}
+	// 	}
+	// }
 	return (0);
 }
