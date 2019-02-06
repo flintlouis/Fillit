@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include "libft.h"
 
 int		check_pieces(char **grid, char *tetriminos, int y, int x)
 {
@@ -24,6 +25,7 @@ int		check_pieces(char **grid, char *tetriminos, int y, int x)
 	i = 0;
 	while (tetriminos[i] != '\0')
 	{
+
 		if (tetriminos[i] >= 'A' && tetriminos[i] <= 'Z')
 		{
 			if (grid[y][x] != '.')
@@ -44,8 +46,8 @@ int		check_pieces(char **grid, char *tetriminos, int y, int x)
 		}
 		if (grid[y] == NULL)
 		{
-			printf("%s Y NULL: DOESNT FIT at X: %d, Y:%d Error at: X%d, Y:%d I:%d\n", tetriminos, x_ph, y_ph, x, y, i);
-			return (0);
+			printf("THIS SHIT WILL NOT FIT\n");
+			return (-1);
 		}
 		i++;
 	}

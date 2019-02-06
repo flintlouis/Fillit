@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void tetrimino_to_ABC(char **tetriminos)
+void tetrimino_to_abc(char **tetriminos)
 {
 	int i;
 	int j;
@@ -46,7 +46,7 @@ char **create_list_of_tetriminos(int fd)
 	while ((nbr = input_to_int(fd)) > 0 && i < 26)
 		tetriminos[i++] = ft_tetrimino(nbr);
 	tetriminos[i] = NULL;
-	tetrimino_to_ABC(tetriminos);
+	tetrimino_to_abc(tetriminos);
 	if (nbr == -1)
 		printf("INVALID FILE\n");
 	return (tetriminos);
@@ -73,43 +73,53 @@ int	main(int argc, char **argv)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	tetriminos = create_list_of_tetriminos(fd);
-	tetrimino_to_ABC(tetriminos);
+	tetrimino_to_abc(tetriminos);
 
 	i = 0;
 	while(tetriminos[i])
 		printf("%s\n\n", tetriminos[i++]);
-	grid = ft_grid(1);
+	grid = ft_grid(i);
 	x_y_grid = ft_fillitsqrt(i * 4);
 
+	i = 0;
 	x = 0;
 	y = 0;
-	while (grid[y])
-	{
-		printf("%s", grid[y]);
-		y++;
-	}
-	y = 0;
-	ft_putnbr(rec_check_pieces(grid, tetriminos, y, x));
-	// while (tetriminos[i])
+	// while (grid[y])
 	// {
-	// 	if (check_pieces(grid, tetriminos[i], y, x))
-	// 	{
-	// 		place_pieces(grid, tetriminos[i], y, x);
-	// 		ft_printgrid(grid);
-	// 		x = 0;
-	// 		y = 0;
-	// 		i++;
-	// 	}
-	// 	else
-	// 	{
-	// 		x++;
-	// 		if (x > x_y_grid)
-	// 		{
-	// 			printf("X_Y_GRID: %d X:%d\n", x_y_grid, x);
-	// 			x = 0;
-	// 			y++;
-	// 		}
-	// 	}
+	// 	printf("%s", grid[y]);
+	// 	y++;
 	// }
+	// y = 0;
+	// ft_putnbr(rec_check_pieces(grid, tetriminos, y, x));
+	while (tetriminos[i])
+	{
+		if (check_pieces(grid, tetriminos[i], y, x) == 1)
+		{
+			place_pieces(grid, tetriminos[i], y, x);
+			ft_printgrid(grid);
+			x = 0;
+			y = 0;
+			i++;
+		}
+		else if (check_pieces(grid, tetriminos[i], y, x) == -1)
+		{
+			printf("THIS SHIT DIDNT FIT\n");
+			i = 0;
+			x_y_grid += 1;
+			grid = ft_grid(x_y_grid);
+			x = 0;
+			y = 0;
+		}
+		else
+		{
+			x++;
+			if (x > x_y_grid)
+			{
+				printf("X_Y_GRID: %d X:%d\n", x_y_grid, x);
+				x = 0;
+				y++;
+			}
+		}
+	}
 	return (0);
 }
