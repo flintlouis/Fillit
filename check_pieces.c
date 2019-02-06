@@ -14,6 +14,34 @@
 #include <unistd.h>
 #include "libft.h"
 
+int 	clear_pieces(char **grid, char c)
+{
+	int y;
+	int x;
+	int location;
+
+	location = -1;
+	y = 0;
+	while (grid[y])
+	{
+		x = 0;
+		while (grid[y][x])
+		{
+			if (grid[y][x] == c)
+			{
+				if (location == -1)
+				{
+					printf("LOCATION: X%d, Y%d\n", x, y);
+					location = ((ft_strlen(grid[y]) - 1) * y) + x;
+				}
+				grid[y][x] = '.';
+			}
+			x++;
+		}
+		y++;
+	}
+	return location;
+}
 int		check_pieces(char **grid, char *tetriminos, int y, int x)
 {
 	int i;

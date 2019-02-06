@@ -68,6 +68,7 @@ int	main(int argc, char **argv)
 	int 		i;
 	int 		x;
 	int			y;
+	int 		z;
 
 	if (argc != 2)
 		return (0);
@@ -104,11 +105,33 @@ int	main(int argc, char **argv)
 		else if (check_pieces(grid, tetriminos[i], y, x) == -1)
 		{
 			printf("THIS SHIT DIDNT FIT\n");
-			i = 0;
-			x_y_grid += 1;
-			grid = ft_grid(x_y_grid);
-			x = 0;
-			y = 0;
+			i -= 1;
+			ft_printgrid(grid);
+			printf("A CLEAAAAAAR %d, %c\n", z = clear_pieces(grid, (i + 30 + '#')), i + 30 + '#');
+			ft_printgrid(grid);
+			if (z == -1)
+			{
+				printf("Z IS -1\n");
+				printf("x_y_grid: %d\n", x_y_grid);
+				x_y_grid += 1;
+				grid = ft_grid((x_y_grid * x_y_grid) / 4);
+				printf("x_y_grid: %d\n", x_y_grid);
+				ft_printgrid(grid);
+				x = 0;
+				y = 0;
+				i = 0;
+				getchar();
+			}
+			//ft_printgrid(grid);
+			//x_y_grid += 1;
+			//grid = ft_grid(x_y_grid);
+			//getchar();
+			else
+			{
+				z += 1;
+				x = z % x_y_grid;
+				y = z / x_y_grid;
+			}
 		}
 		else
 		{
@@ -118,6 +141,30 @@ int	main(int argc, char **argv)
 				printf("X_Y_GRID: %d X:%d\n", x_y_grid, x);
 				x = 0;
 				y++;
+				printf("X_Y_GRID: %d Y:%d\n", x_y_grid, y);
+				if (y == x_y_grid)
+				{
+					i -= 1;
+					ft_printgrid(grid);
+					printf("B CLEAAAAAAR %d, %c\n", z = clear_pieces(grid, (i + 30 + '#')), i + 30 + '#');
+					ft_printgrid(grid);
+					if (z == -1)
+					{
+						printf("Z IS -1\n");
+						x_y_grid += 1;
+						grid = ft_grid(x_y_grid);
+						x = 0;
+						y = 0;
+						i = 0;
+						getchar();
+					}
+					else
+					{
+						z += 1;
+						x = z % x_y_grid;
+						y = z / x_y_grid;
+					}
+				}
 			}
 		}
 	}
