@@ -14,11 +14,11 @@ int		ft_fillitsqrt(int nb)
 {
 	int x;
 
+	if (nb < 0)
+		return(-1);
 	x = 1;
 	while (x * x != nb)
 	{
-		if (x >= 46341)
-			return (0);
 		if (x * x > nb)
 			return (x);
 		x++;

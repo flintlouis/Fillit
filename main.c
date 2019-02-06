@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	while(tetriminos[i])
 		printf("%s\n\n", tetriminos[i++]);
 	grid = ft_grid(i);
-	x_y_grid = ft_fillitsqrt(i);
+	x_y_grid = ft_fillitsqrt(i * 4);
 
 	i = 0;
 	x = 0;
@@ -90,14 +90,20 @@ int	main(int argc, char **argv)
 		{
 			place_pieces(grid, tetriminos[i], y, x);
 			ft_printgrid(grid);
+			x = 0;
+			y = 0;
 			i++;
 		}
 		else
-			if (++x > x_y_grid)
+		{
+			x++;
+			if (x > x_y_grid)
 			{
+				printf("X_Y_GRID: %d X:%d\n", x_y_grid, x);
 				x = 0;
 				y++;
 			}
+		}
 	}
 	return (0);
 }

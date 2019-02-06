@@ -66,7 +66,7 @@ char	*ft_tetrimino(int x)
 	char *result;
 
 	result = NULL;
-	result = x % 15 == 0 ? ft_strdup("####") : result;
+	result = x % 15 == 0 ? ft_strdup("####\n") : result;
 	result = x % 23 == 0 ? ft_strdup("###\n#") : result;
 	result = x % 39 == 0 ? ft_strdup("###\n #") : result;
 	result = x % 51 == 0 ? ft_strdup("##\n##") : result;
