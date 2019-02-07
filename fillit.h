@@ -13,13 +13,10 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-char	**ft_grid(int size);
-char	*ft_tetrimino(int x);
 int		input_to_int(int fd);
 int		ft_fillitsqrt(int nb);
-int		check_pieces(char **grid, char *tetriminos, int y, int x);
-void	place_pieces(char **grid, char *tetriminos, int y, int x);
-
-int		rec_check_pieces(char **grid, char **tetriminos, int y, int x);
+int		ft_rec(char **grid, char **tetris, int i);
+char	**ft_grid(int size);
+char	*ft_tetrimino(int x);
 
 #endif
