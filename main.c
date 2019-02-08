@@ -16,12 +16,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int		ft_fillitsqrt(int nb)
+//	errors to fix: testwrong3a, testwrong3b, testwrong5
+
+int			ft_fillitsqrt(int nb)
 {
 	int x;
 
 	if (nb < 0)
-		return(-1);
+		return (-1);
 	x = 1;
 	while (x * x != nb)
 	{
@@ -32,7 +34,19 @@ int		ft_fillitsqrt(int nb)
 	return (x);
 }
 
-void tetrimino_to_abc(char **tetriminos)
+void		printgrid(char **grid)
+{
+	int i;
+
+	i = 0;
+	while (grid[i])
+	{
+		ft_putstr(grid[i]);
+		i++;
+	}
+}
+
+void		tetrimino_to_abc(char **tetriminos)
 {
 	int i;
 	int j;
@@ -51,68 +65,55 @@ void tetrimino_to_abc(char **tetriminos)
 	}
 }
 
-char **create_list_of_tetriminos(int fd)
+void		create_list_of_tetriminos(int fd, char **tetriminos)
 {
 	int			nbr;
 	int			i;
-	static char	*tetriminos[27]; //WHY STATIC?
 
 	i = 0;
-	while ((nbr = input_to_int(fd)) > 0 && i < 26)
+	while ((nbr = input_to_int(fd)) > 0) //while loop veranderen :(
 	{
+		if (i == 26)
+		{
+			ft_putendl_fd("error", 1);
+			exit(0);
+		}
 		tetriminos[i] = ft_tetrimino(nbr);
 		i++;
 	}
-	tetriminos[i] = NULL;
-	tetrimino_to_abc(tetriminos);
-	if (nbr == -1)
+	if (nbr == -1 || i == 0)
 	{
-		ft_putendl_fd("error", 2);
+		ft_putendl_fd("error", 1);
 		exit(0);
 	}
-	return (tetriminos);
+	tetriminos[i] = NULL;
+	tetrimino_to_abc(tetriminos);
 }
 
-void	printgrid(char **grid)
+int			main(int argc, char **argv)
 {
-	int i;
-
-	i = 0;
-	while (grid[i])
-	{
-		ft_putstr(grid[i]);
-		i++;
-	}
-}
-
-int		main(int argc, char **argv)
-{
-	int			fd;
-	char		**tetriminos;
-	char  		**grid;
-	int 		i;
+	int		fd;
+	int		i;
+	char	**grid;
+	char	*tetriminos[27];
 
 	if (argc != 2)
 	{
-		ft_putendl_fd("error", 2);
+		ft_putendl_fd("error", 1);
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
-	tetriminos = create_list_of_tetriminos(fd);
+	create_list_of_tetriminos(fd, tetriminos);
 	i = 0;
-	while(tetriminos[i])
+	while (tetriminos[i])
 		i++;
-	if (i > 26 || i == 0)
-	{
-		ft_putendl_fd("error", 2);
-		exit(0);
-	}
 	grid = ft_grid(i);
-	while(ft_rec(grid, tetriminos, 0) != 1)
+	while (ft_rec(grid, tetriminos, 0) != 1)
 	{
 		i++;
 		grid = ft_grid(i);
 	}
 	printgrid(grid);
+	free(grid);
 	return (0);
 }

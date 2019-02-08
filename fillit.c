@@ -107,7 +107,7 @@ int		input_to_int(int fd)
 			power = j + 4 * i;
 			if (j > 3 || (line[j] != '.' && line[j] != '#'))
 				return (-1);
-			if (line[j++] == '#')
+			if (line[j++] == '#')  // if statement veranderen :(
 				sum += ft_power(2, power);
 			power++;
 		}

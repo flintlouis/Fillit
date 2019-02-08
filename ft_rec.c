@@ -14,6 +14,17 @@
 #include "libft.h"
 #include "fillit.h"
 
+void		xy_plus(char **grid, int *x, int *y)
+{
+	if (grid[*y][*x] != '\n')
+		(*x)++;
+	else
+	{
+		(*y)++;
+		*x = 0;
+	}
+}
+
 void		remove_tetris(char **grid, char *tetris, int x, int y)
 {
 	int i;
@@ -25,27 +36,21 @@ void		remove_tetris(char **grid, char *tetris, int x, int y)
 	{
 		if (tetris[i] >= 'A' && tetris[i] <= 'Z')
 		{
-
 			grid[y][x] = '.';
-			i++;
 			x++;
-
 		}
 		else if (tetris[i] == '\n')
 		{
-			i++;
 			x = xph;
 			y++;
 		}
 		else if (tetris[i] == ' ')
-		{
-			i++;
 			x++;
-		}
+		i++;
 	}
 }
 
-void	place_tetris(char **grid, char *tetris, int x, int y)
+void		place_tetris(char **grid, char *tetris, int x, int y)
 {
 	int i;
 	int xph;
@@ -56,28 +61,21 @@ void	place_tetris(char **grid, char *tetris, int x, int y)
 	{
 		if (tetris[i] >= 'A' && tetris[i] <= 'Z')
 		{
-			if (grid[y][x] == '.')
-			{
-				grid[y][x] = tetris[i];
-				i++;
-				x++;
-			}
+			grid[y][x] = tetris[i];
+			x++;
 		}
 		else if (tetris[i] == '\n')
 		{
-			i++;
 			x = xph;
 			y++;
 		}
 		else if (tetris[i] == ' ')
-		{
-			i++;
 			x++;
-		}
+		i++;
 	}
 }
 
-int		tetris_check(char **grid, char *tetris, int x, int y)
+int			tetris_check(char **grid, char *tetris, int x, int y)
 {
 	int i;
 	int xph;
@@ -86,47 +84,27 @@ int		tetris_check(char **grid, char *tetris, int x, int y)
 	xph = x;
 	while (tetris[i] != '\0')
 	{
-		if (tetris[i] >= 'A' && tetris[i] <= 'Z')
+		if ((tetris[i] >= 'A' && tetris[i] <= 'Z') || tetris[i] == ' ')
 		{
-			if (grid[y][x] == '.')
-			{
-				i++;
+			if (grid[y][x] == '.' || tetris[i] == ' ')
 				x++;
-			}
 			else
 				return (-1);
 		}
 		else if (tetris[i] == '\n')
 		{
-			i++;
 			x = xph;
 			y++;
 			if (!grid[y])
 				return (-1);
 		}
-		else if (tetris[i] == ' ')
-		{
-			i++;
-			x++;
-		}
+		i++;
 	}
 	return (1);
 }
 
-void	xy_plus(char **grid, int *x, int *y)
+int			ft_rec(char **grid, char **tetris, int i)
 {
-	if (grid[*y][*x] != '\n')
-		(*x)++;
-	else
-	{
-		(*y)++;
-		*x = 0;
-	}
-}
-
-int		ft_rec(char **grid, char **tetris, int i)
-{
-	int ret;
 	int x;
 	int y;
 
@@ -136,14 +114,12 @@ int		ft_rec(char **grid, char **tetris, int i)
 		return (1);
 	while (grid[y])
 	{
-		ret = tetris_check(grid, tetris[i], x, y);
-		if (ret == -1)
+		if (tetris_check(grid, tetris[i], x, y) == -1)
 			xy_plus(grid, &x, &y);
-		if (ret == 1)
+		else
 		{
 			place_tetris(grid, tetris[i], x, y);
-			ret = ft_rec(grid, tetris, i + 1);
-			if (ret == 1)
+			if (ft_rec(grid, tetris, i + 1) == 1)
 				return (1);
 			else
 			{
