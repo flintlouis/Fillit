@@ -15,14 +15,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
-
-void 		ft_error(char *str)
-{
-	ft_putendl("error");
-	ft_putendl_fd(str, 2);
-	exit(0);
-}
 
 char		**malloc_grid(int size_sqrt)
 {
@@ -74,7 +66,8 @@ static int	validity_check(int x, int mod)
 
 	r = x / mod;
 	if (x % mod == 0 && (r == 1 || r == 2 || r == 4 || r == 8 || r == 16 ||
-		r == 32 || r == 64 || r == 128 || r == 256 || r == 512 || r == 1024 || r == 4096))
+		r == 32 || r == 64 || r == 128 || r == 256 || r == 512 || r == 1024 ||
+		r == 4096))
 		return (1);
 	return (0);
 }
@@ -87,7 +80,7 @@ char		*ft_tetrimino(int x)
 	result = validity_check(x, 15) ? ft_strdup("####") : result;
 	result = validity_check(x, 23) ? ft_strdup("###\n#") : result;
 	result = validity_check(x, 39) ? ft_strdup("###\n #") : result;
-	result = validity_check(x, 51)? ft_strdup("##\n##") : result;
+	result = validity_check(x, 51) ? ft_strdup("##\n##") : result;
 	result = validity_check(x, 54) ? ft_strdup(" ##\n##") : result;
 	result = validity_check(x, 71) ? ft_strdup("###\n  #") : result;
 	result = validity_check(x, 99) ? ft_strdup("##\n ##") : result;
@@ -108,36 +101,30 @@ char		*ft_tetrimino(int x)
 	return (result);
 }
 
-int		input_to_int(int fd)
+int			input_to_int(int fd, int *result, int *sum)
 {
-	char	*line;
 	int		i;
 	int		j;
-	int		sum;
-	int		power;
+	char	buf[21];
 
-	sum = 0;
+	*sum = 0;
 	i = 0;
-	line = NULL;
-	while (i < 5 && ft_get_next_line(fd, &line) > 0)
+	j = 0;
+	*result = read(fd, buf, 21);
+	buf[*result] = '\0';
+	while (buf[i])
 	{
-		j = 0;
-		if (i == 4 && (ft_strlen(line) > 0 || line[0]))
-			return (-1);
-		while (line[j] || (j < 4 && i != 4))
+		if (i == 19 && buf[i] == '\n')
+			return (*sum);
+		if ((buf[i] == '#' || buf[i] == '.') && (i % 5) != 4)
 		{
-			power = j + 4 * i;
-			if (j > 3 || (line[j] != '.' && line[j] != '#'))
-				return (-1);
-			if (line[j++] == '#')  // if statement veranderen :(
-				sum += ft_power(2, power);
-			power++;
+			if (buf[i] == '#')
+				*sum += ft_power(2, j);
+			j++;
 		}
-		i++;
-		if (sum == 0 && i == 4 && j == 3)
+		else if (!(buf[i] == '\n' && (i % 5) == 4))
 			ft_error("1");
+		i++;
 	}
-	if (i < 4 && j > 0)
-		ft_error("7");
-	return (sum);
+	return (*result > 0 ? ft_error("11") : 0);
 }

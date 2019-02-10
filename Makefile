@@ -12,12 +12,12 @@
 
 NAME = fillit
 
-FILESC = main.c fillit.c ft_rec.c
+SRC = main.c fillit.c ft_rec.c ft_error.c
 
 all: $(NAME)
 
 $(NAME):
-	@gcc -o $(NAME) -Wall -Wextra -Werror $(FILESC) -LLibft -lft
+	@gcc -o $(NAME) -Wall -Wextra -Werror $(SRC) -LLibft -lft
 clean:
 	@/bin/rm -f *\~
 	@/bin/rm -f \#*#

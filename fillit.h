@@ -13,11 +13,11 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-int		input_to_int(int fd);
+int		input_to_int(int fd, int *result, int *sum);
 int		ft_fillitsqrt(int nb);
 int		ft_rec(char **grid, char **tetris, int i);
 char	**ft_grid(int size);
 char	*ft_tetrimino(int x);
-void 	ft_error(char *str);
+int		ft_error(char *str);
 
 #endif

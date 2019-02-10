@@ -16,8 +16,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-//	errors to fix: testwrong3a, testwrong3b, testwrong5
-
 int			ft_fillitsqrt(int nb)
 {
 	int x;
@@ -69,17 +67,20 @@ void		create_list_of_tetriminos(int fd, char **tetriminos)
 {
 	int			nbr;
 	int			i;
+	int			result;
+	int			prev_res;
 
 	i = 0;
-	while ((nbr = input_to_int(fd)) > 0) //while loop veranderen :(
+	while ((input_to_int(fd, &result, &nbr)) > 0)
 	{
-		// ft_putnbr(nbr);
-		// ft_putchar('\n');
+		prev_res = result;
 		if (i == 26)
 			ft_error("4");
 		tetriminos[i] = ft_tetrimino(nbr);
 		i++;
 	}
+	if (result == 0 && prev_res != 20)
+		ft_error("14");
 	if (nbr == -1 || i == 0)
 		ft_error("3");
 	tetriminos[i] = NULL;
@@ -92,7 +93,7 @@ int			main(int argc, char **argv)
 	int		i;
 	char	**grid;
 	char	*tetriminos[27];
-	int 	x_y_width;
+	int		x_y_width;
 
 	if (argc != 2)
 		ft_error("2");
