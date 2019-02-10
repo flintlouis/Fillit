@@ -15,8 +15,16 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
-char	**malloc_grid(int size_sqrt)
+void 		ft_error(char *str)
+{
+	ft_putendl("error");
+	ft_putendl_fd(str, 2);
+	exit(0);
+}
+
+char		**malloc_grid(int size_sqrt)
 {
 	int		i;
 	char	**grid;
@@ -32,7 +40,7 @@ char	**malloc_grid(int size_sqrt)
 	return (grid);
 }
 
-char	**ft_grid(int size)
+char		**ft_grid(int size)
 {
 	int		size_sqrt;
 	int		i;
@@ -60,30 +68,43 @@ char	**ft_grid(int size)
 	return (grid);
 }
 
-char	*ft_tetrimino(int x)
+static int	validity_check(int x, int mod)
+{
+	int	r;
+
+	r = x / mod;
+	if (x % mod == 0 && (r == 1 || r == 2 || r == 4 || r == 8 || r == 16 ||
+		r == 32 || r == 64 || r == 128 || r == 256 || r == 512 || r == 1024 || r == 4096))
+		return (1);
+	return (0);
+}
+
+char		*ft_tetrimino(int x)
 {
 	char *result;
 
 	result = NULL;
-	result = x % 15 == 0 ? ft_strdup("####") : result;
-	result = x % 23 == 0 ? ft_strdup("###\n#") : result;
-	result = x % 39 == 0 ? ft_strdup("###\n #") : result;
-	result = x % 51 == 0 ? ft_strdup("##\n##") : result;
-	result = x % 54 == 0 ? ft_strdup(" ##\n##") : result;
-	result = x % 71 == 0 ? ft_strdup("###\n  #") : result;
-	result = x % 99 == 0 ? ft_strdup("##\n ##") : result;
-	result = x % 113 == 0 ? ft_strdup("#\n###") : result;
-	result = x % 114 == 0 ? ft_strdup(" #\n###") : result;
-	result = x % 116 == 0 ? ft_strdup("  #\n###") : result;
-	result = x % 275 == 0 ? ft_strdup("##\n#\n#") : result;
-	result = x % 305 == 0 ? ft_strdup("#\n##\n#") : result;
-	result = x % 306 == 0 ? ft_strdup(" #\n##\n#") : result;
-	result = x % 547 == 0 ? ft_strdup("##\n #\n #") : result;
-	result = x % 561 == 0 ? ft_strdup("#\n##\n #") : result;
-	result = x % 562 == 0 ? ft_strdup(" #\n##\n #") : result;
-	result = x % 785 == 0 ? ft_strdup("#\n#\n##") : result;
-	result = x % 802 == 0 ? ft_strdup(" #\n #\n##") : result;
-	result = x % 4369 == 0 ? ft_strdup("#\n#\n#\n#") : result;
+	result = validity_check(x, 15) ? ft_strdup("####") : result;
+	result = validity_check(x, 23) ? ft_strdup("###\n#") : result;
+	result = validity_check(x, 39) ? ft_strdup("###\n #") : result;
+	result = validity_check(x, 51)? ft_strdup("##\n##") : result;
+	result = validity_check(x, 54) ? ft_strdup(" ##\n##") : result;
+	result = validity_check(x, 71) ? ft_strdup("###\n  #") : result;
+	result = validity_check(x, 99) ? ft_strdup("##\n ##") : result;
+	result = validity_check(x, 113) ? ft_strdup("#\n###") : result;
+	result = validity_check(x, 114) ? ft_strdup(" #\n###") : result;
+	result = validity_check(x, 116) ? ft_strdup("  #\n###") : result;
+	result = validity_check(x, 275) ? ft_strdup("##\n#\n#") : result;
+	result = validity_check(x, 305) ? ft_strdup("#\n##\n#") : result;
+	result = validity_check(x, 306) ? ft_strdup(" #\n##\n#") : result;
+	result = validity_check(x, 547) ? ft_strdup("##\n #\n #") : result;
+	result = validity_check(x, 561) ? ft_strdup("#\n##\n #") : result;
+	result = validity_check(x, 562) ? ft_strdup(" #\n##\n #") : result;
+	result = validity_check(x, 785) ? ft_strdup("#\n#\n##") : result;
+	result = validity_check(x, 802) ? ft_strdup(" #\n #\n##") : result;
+	result = validity_check(x, 4369) ? ft_strdup("#\n#\n#\n#") : result;
+	if (!result)
+		ft_error("6");
 	return (result);
 }
 
@@ -97,6 +118,7 @@ int		input_to_int(int fd)
 
 	sum = 0;
 	i = 0;
+	line = NULL;
 	while (i < 5 && ft_get_next_line(fd, &line) > 0)
 	{
 		j = 0;
@@ -112,6 +134,10 @@ int		input_to_int(int fd)
 			power++;
 		}
 		i++;
+		if (sum == 0 && i == 4 && j == 3)
+			ft_error("1");
 	}
+	if (i < 4 && j > 0)
+		ft_error("7");
 	return (sum);
 }

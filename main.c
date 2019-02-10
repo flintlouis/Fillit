@@ -73,19 +73,15 @@ void		create_list_of_tetriminos(int fd, char **tetriminos)
 	i = 0;
 	while ((nbr = input_to_int(fd)) > 0) //while loop veranderen :(
 	{
+		// ft_putnbr(nbr);
+		// ft_putchar('\n');
 		if (i == 26)
-		{
-			ft_putendl_fd("error", 1);
-			exit(0);
-		}
+			ft_error("4");
 		tetriminos[i] = ft_tetrimino(nbr);
 		i++;
 	}
 	if (nbr == -1 || i == 0)
-	{
-		ft_putendl_fd("error", 1);
-		exit(0);
-	}
+		ft_error("3");
 	tetriminos[i] = NULL;
 	tetrimino_to_abc(tetriminos);
 }
@@ -96,22 +92,21 @@ int			main(int argc, char **argv)
 	int		i;
 	char	**grid;
 	char	*tetriminos[27];
+	int 	x_y_width;
 
 	if (argc != 2)
-	{
-		ft_putendl_fd("error", 1);
-		return (0);
-	}
+		ft_error("2");
 	fd = open(argv[1], O_RDONLY);
 	create_list_of_tetriminos(fd, tetriminos);
 	i = 0;
 	while (tetriminos[i])
 		i++;
 	grid = ft_grid(i);
+	x_y_width = ft_fillitsqrt(i * 4);
 	while (ft_rec(grid, tetriminos, 0) != 1)
 	{
-		i++;
-		grid = ft_grid(i);
+		x_y_width += 1;
+		grid = ft_grid(i++);
 	}
 	printgrid(grid);
 	free(grid);

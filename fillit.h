@@ -18,5 +18,6 @@ int		ft_fillitsqrt(int nb);
 int		ft_rec(char **grid, char **tetris, int i);
 char	**ft_grid(int size);
 char	*ft_tetrimino(int x);
+void 	ft_error(char *str);
 
 #endif
