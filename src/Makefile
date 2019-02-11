@@ -3,30 +3,21 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: fhignett <marvin@codam.nl>                   +#+                      #
+#    By: ssturken <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/02/11 12:48:37 by fhignett      #+#    #+#                  #
-#    Updated: 2019/02/11 12:48:37 by fhignett      ########   odam.nl          #
+#    Created: 2019/01/08 16:10:52 by ssturken      #+#    #+#                  #
+#    Updated: 2019/01/22 21:21:15 by ssturken      ########   odam.nl          #
 #                                                                              #
 #******************************************************************************#
 
-NAME = fillit
+SRC = main.c fillit.c ft_rec.c ft_error.c
 
-OBJ = src/main.o src/fillit.o src/ft_rec.o src/ft_error.o
+OBJ = main.o fillit.o ft_rec.o ft_error.o
 
-all: $(NAME)
-
-$(NAME):
-	@make -C libft/
-	@make -C src/
-	@gcc -o $(NAME) -Wall -Wextra -Werror -Llibft -lft $(OBJ)
+all:
+	@gcc -c -Wall -Wextra -Werror -I ../libft/ $(SRC)
 
 clean:
-	@make -C libft/ clean
-	@make -C src/ clean
+	@/bin/rm -f $(OBJ)
 
-fclean: clean
-	@make -C libft/ fclean
-	@rm -f $(NAME)
-
-re: fclean all
+re: clean all
