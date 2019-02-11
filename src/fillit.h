@@ -19,5 +19,6 @@ int		ft_rec(char **grid, char **tetris, int i);
 char	**ft_grid(int size);
 char	*ft_tetrimino(int x);
 int		ft_error(void);
+void	ft_error_usage(void);
 
 #endif

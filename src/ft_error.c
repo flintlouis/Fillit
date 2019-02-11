@@ -19,3 +19,9 @@ int	ft_error(void)
 	exit(0);
 	return (-1);
 }
+
+int	ft_error_usage(void)
+{
+	ft_putendl("usage: ./fillit test_file");
+	exit(0);
+}

@@ -96,7 +96,7 @@ int			main(int argc, char **argv)
 	int		x_y_width;
 
 	if (argc != 2)
-		ft_error();
+		ft_error_usage();
 	fd = open(argv[1], O_RDONLY);
 	create_list_of_tetriminos(fd, tetriminos);
 	i = 0;
