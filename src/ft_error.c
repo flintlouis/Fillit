@@ -13,14 +13,14 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int	ft_error(void)
+int		ft_error(void)
 {
 	ft_putendl("error");
 	exit(0);
 	return (-1);
 }
 
-int	ft_error_usage(void)
+void	ft_error_usage(void)
 {
 	ft_putendl("usage: ./fillit test_file");
 	exit(0);
