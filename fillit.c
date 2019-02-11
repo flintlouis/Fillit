@@ -97,7 +97,7 @@ char		*ft_tetrimino(int x)
 	result = validity_check(x, 802) ? ft_strdup(" #\n #\n##") : result;
 	result = validity_check(x, 4369) ? ft_strdup("#\n#\n#\n#") : result;
 	if (!result)
-		ft_error("6");
+		ft_error();
 	return (result);
 }
 
@@ -123,8 +123,8 @@ int			input_to_int(int fd, int *result, int *sum)
 			j++;
 		}
 		else if (!(buf[i] == '\n' && (i % 5) == 4))
-			ft_error("1");
+			ft_error();
 		i++;
 	}
-	return (*result > 0 ? ft_error("11") : 0);
+	return (*result > 0 ? ft_error() : 0);
 }

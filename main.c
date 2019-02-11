@@ -75,14 +75,14 @@ void		create_list_of_tetriminos(int fd, char **tetriminos)
 	{
 		prev_res = result;
 		if (i == 26)
-			ft_error("4");
+			ft_error();
 		tetriminos[i] = ft_tetrimino(nbr);
 		i++;
 	}
 	if (result == 0 && prev_res != 20)
-		ft_error("14");
+		ft_error();
 	if (nbr == -1 || i == 0)
-		ft_error("3");
+		ft_error();
 	tetriminos[i] = NULL;
 	tetrimino_to_abc(tetriminos);
 }
@@ -96,7 +96,7 @@ int			main(int argc, char **argv)
 	int		x_y_width;
 
 	if (argc != 2)
-		ft_error("2");
+		ft_error();
 	fd = open(argv[1], O_RDONLY);
 	create_list_of_tetriminos(fd, tetriminos);
 	i = 0;

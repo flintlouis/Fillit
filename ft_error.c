@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fillit.h                                           :+:    :+:            */
+/*   ft_error.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ssturken <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/30 17:09:22 by ssturken      #+#    #+#                 */
-/*   Updated: 2019/01/30 17:09:24 by ssturken      ########   odam.nl         */
+/*   Created: 2019/02/10 20:31:37 by ssturken      #+#    #+#                 */
+/*   Updated: 2019/02/10 20:31:38 by ssturken      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
+#include <stdlib.h>
 
-int		input_to_int(int fd, int *result, int *sum);
-int		ft_fillitsqrt(int nb);
-int		ft_rec(char **grid, char **tetris, int i);
-char	**ft_grid(int size);
-char	*ft_tetrimino(int x);
-int		ft_error(void);
-
-#endif
+int	ft_error(void)
+{
+	ft_putendl("error");
+	exit(0);
+	return (-1);
+}
