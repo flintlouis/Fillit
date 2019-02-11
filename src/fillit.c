@@ -115,7 +115,7 @@ int			input_to_int(int fd, int *result, int *sum)
 	while (buf[i])
 	{
 		if (i == 19 && buf[i] == '\n')
-			return (*sum);
+			return (*sum == 0 ? ft_error() : *sum);
 		if ((buf[i] == '#' || buf[i] == '.') && (i % 5) != 4)
 		{
 			if (buf[i] == '#')

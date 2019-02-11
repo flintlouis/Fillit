@@ -22,6 +22,6 @@ int		ft_error(void)
 
 void	ft_error_usage(void)
 {
-	ft_putendl("usage: ./fillit test_file");
+	ft_putendl("usage: ./fillit file_name");
 	exit(0);
 }
