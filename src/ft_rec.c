@@ -6,12 +6,12 @@
 /*   By: fhignett <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/06 15:10:50 by fhignett      #+#    #+#                 */
-/*   Updated: 2021/04/20 11:45:31 by flintlouis    ########   odam.nl         */
+/*   Updated: 2021/04/20 11:59:25 by flintlouis    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../libft/libft.h"
+#include "libft.h"
 #include "fillit.h"
 
 void		xy_plus(char **grid, int *x, int *y)

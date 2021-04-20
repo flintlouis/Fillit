@@ -6,11 +6,11 @@
 /*   By: ssturken <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/10 20:31:37 by ssturken      #+#    #+#                 */
-/*   Updated: 2021/04/20 11:45:29 by flintlouis    ########   odam.nl         */
+/*   Updated: 2021/04/20 11:59:20 by flintlouis    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 #include <stdlib.h>
 
 int		ft_error(void)

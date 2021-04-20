@@ -6,11 +6,11 @@
 /*   By: ssturken <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/30 16:16:51 by ssturken      #+#    #+#                 */
-/*   Updated: 2021/04/20 11:45:26 by flintlouis    ########   odam.nl         */
+/*   Updated: 2021/04/20 11:59:15 by flintlouis    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 #include "fillit.h"
 #include <fcntl.h>
 #include <stdlib.h>
